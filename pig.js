@@ -3,13 +3,15 @@ class Pig {
         this.rx = 100;
         this.ry = 170;
         this.x = 50;
-        this.y = height - this.rx;
+        this.y = height - this.ry;
         this.vy = 0;
         this.gravity = 2;
     }
 
     jump() {
-        this.vy = -25;
+        if (this.y === height - this.ry) {
+            this.vy = -25;
+        }
     }
 
     move() {
