@@ -41,10 +41,5 @@ class Pig {
 
     show() {
         image(pigImage, this.x, this.y, this.rx, this.ry);
-
-        fill(255, 50);
-
-        // ellipseMode(CORNER);
-        // ellipse(this.x, this.y, this.rx, this.ry);
     }
 }
