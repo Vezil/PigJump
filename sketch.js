@@ -1,7 +1,16 @@
 let pig;
+let pigImage;
+let obstacleImage;
+let backgroundImage;
+
+function preload() {
+    pigImage = loadImage('./assets/PigCharacter.png');
+    obstacleImage = loadImage('./assets/Obstacle.png');
+    backgroundImage = loadImage('./assets/WholeCakeIsland.png');
+}
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(1280, 720);
 
     pig = new Pig();
 }
@@ -13,7 +22,7 @@ function keyPressed() {
 }
 
 function draw() {
-    background(220);
+    background(backgroundImage);
 
     pig.show();
     pig.move();
