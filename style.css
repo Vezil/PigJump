@@ -2,7 +2,13 @@ html,
 body {
     margin: 0;
     padding: 0;
+    background-color: black;
 }
+
 canvas {
     display: block;
+    margin: auto;
+
+    border-radius: 96% 4% 95% 5% / 12% 98% 2% 88%;
+    border: 14px solid rgb(11, 20, 12);
 }
