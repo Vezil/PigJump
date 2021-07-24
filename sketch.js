@@ -23,7 +23,7 @@ function keyPressed() {
 }
 
 function draw() {
-    if (random(1) < 0.01) {
+    if (random(1) < 0.005) {
         obstacles.push(new Obstacle());
     }
 
@@ -35,5 +35,11 @@ function draw() {
     obstacles.forEach(obstacle => {
         obstacle.show();
         obstacle.move();
+
+        if (pig.hits(obstacle)) {
+            console.log('GAME OVER');
+
+            noLoop();
+        }
     });
 }
