@@ -39,7 +39,7 @@ class Pig {
         this.y = constrain(this.y, 0, height - this.ry);
     }
 
-    show() {
+    render() {
         image(pigImage, this.x, this.y, this.rx, this.ry);
     }
 }

@@ -9,7 +9,7 @@ class Obstacle {
         this.x -= 9;
     }
 
-    show() {
+    render() {
         image(obstacleImage, this.x, this.y, this.r, this.r);
     }
 }
