@@ -8,8 +8,8 @@ let pig;
 let pigImage;
 let obstacleImage;
 let backgroundImage;
-
-let counter = 0;
+let counter;
+let counterValue = 0;
 
 function preload() {
     pigImage = loadImage('./assets/PigCharacter.png');
@@ -21,6 +21,9 @@ function setup() {
     createCanvas(STAGE_WIDTH, STAGE_HEIGTH);
 
     pig = new Pig();
+    counter = new Counter();
+
+    addEventListeners();
 }
 
 function keyPressed() {
@@ -30,13 +33,15 @@ function keyPressed() {
 }
 
 function draw() {
-    if (random(1) < 0.005) {
+    if (random(1) < 0.009) {
         obstacles.push(new Obstacle());
     }
 
     background(backgroundImage);
 
     pig.render();
+    counter.render(counterValue);
+
     pig.move();
 
     obstacles.forEach((obstacle, index) => {
@@ -44,8 +49,6 @@ function draw() {
         obstacle.move();
 
         if (pig.hits(obstacle)) {
-            console.log('GAME OVER ' + counter);
-
             noLoop();
         }
 
@@ -53,19 +56,23 @@ function draw() {
 
         if (obstacles[index].x < pig.x && !isObstaclePassed) {
             passedObstacles.push(obstacles[index]);
-            counter++;
+            counterValue++;
         }
     });
+}
 
-    textSize(40);
+function wink() {
+    const pigWithClosedEyes = document.getElementsByClassName(
+        'pig-with-closed-eyes'
+    )[0];
 
-    stroke(24);
-    strokeWeight(0.5);
-    text('YOUR POINTS: ', STAGE_WIDTH - 80, 30);
+    pigWithClosedEyes.classList.add('show');
 
-    stroke(0, 238, 144);
-    strokeWeight(1);
-    text(counter, STAGE_WIDTH - 60, 30);
+    setTimeout(() => {
+        pigWithClosedEyes.classList.remove('show');
+    }, 700);
+}
 
-    textAlign(RIGHT, TOP);
+function addEventListeners() {
+    setInterval(wink, 3000);
 }
