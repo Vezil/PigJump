@@ -35,7 +35,13 @@ function keyPressed() {
 
 function draw() {
     if (random(1) < 0.009 && Date.now() - lastObstacleTime > 1000) {
-        obstacles.push(new Obstacle());
+        const firstRandomInt = Math.floor(Math.random() * 255) + 1;
+        const secondRandomInt = Math.floor(Math.random() * 255) + 1;
+        const thirdRandomInt = Math.floor(Math.random() * 255) + 1;
+
+        obstacles.push(
+            new Obstacle(firstRandomInt, secondRandomInt, thirdRandomInt)
+        );
 
         lastObstacleTime = Date.now();
     }
