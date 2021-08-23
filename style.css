@@ -7,8 +7,39 @@ body {
 
 canvas {
     display: block;
-    margin: auto;
 
-    border-radius: 96% 4% 95% 5% / 12% 98% 2% 88%;
-    border: 14px solid rgb(11, 20, 12);
+    position: fixed;
+    top: 10%;
+    left: 10%;
+}
+
+.container {
+    width: 1360px;
+    height: 810px;
+
+    position: fixed;
+    top: 5%;
+    left: 8%;
+
+    z-index: 99;
+
+    background-image: url('assets/PigJumpBorder.png');
+}
+
+.pig-with-closed-eyes {
+    width: 138px;
+    height: 98px;
+
+    position: relative;
+    left: 46.2%;
+
+    z-index: 98;
+    opacity: 0;
+    transition: opacity 0.22s;
+
+    background-image: url('assets/pigWithClosedEyes.png');
+}
+
+.pig-with-closed-eyes.show {
+    opacity: 1;
 }
