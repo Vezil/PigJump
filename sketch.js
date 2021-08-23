@@ -10,6 +10,7 @@ let obstacleImage;
 let backgroundImage;
 let counter;
 let counterValue = 0;
+let lastObstacleTime = Date.now();
 
 function preload() {
     pigImage = loadImage('./assets/PigCharacter.png');
@@ -33,8 +34,10 @@ function keyPressed() {
 }
 
 function draw() {
-    if (random(1) < 0.009) {
+    if (random(1) < 0.009 && Date.now() - lastObstacleTime > 1000) {
         obstacles.push(new Obstacle());
+
+        lastObstacleTime = Date.now();
     }
 
     background(backgroundImage);
