@@ -12,6 +12,7 @@ let counter = null;
 let counterValue = 0;
 let lastObstacleTime = Date.now();
 let winkInterval = null;
+let resetSketchListener = null;
 
 function preload() {
     pigImage = loadImage('./assets/PigCharacter.png');
@@ -106,8 +107,18 @@ function wink() {
 
 function addEventListeners() {
     winkInterval = setInterval(wink, 3000);
+
+    resetSketchListener = event => {
+        if (event.key === 'r' || event.key === 'R') {
+            setSketch();
+        }
+    };
+
+    document.addEventListener('keydown', resetSketchListener);
 }
 
 function clearEventListeners() {
     clearInterval(winkInterval);
+
+    document.removeEventListener('keydown', resetSketchListener);
 }

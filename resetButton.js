@@ -26,7 +26,7 @@ class ResetButton {
         resetButton.position(1200, 870);
 
         // resetButton.class = 'resetButton';
-        //hover itd... :)
+        // hover itd... :)
 
         return resetButton;
     }
