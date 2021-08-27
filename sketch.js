@@ -6,6 +6,7 @@ const passedObstacles = [];
 
 let pig = null;
 let pigImage = null;
+let pigFaceMessage = null;
 let obstacleImage = null;
 let backgroundImage = null;
 let counter = null;
@@ -44,6 +45,7 @@ function setSketch() {
 
     pig = new Pig();
     counter = new Counter();
+    pigFaceMessage = new PigFaceMessage();
 
     loop();
 
@@ -73,6 +75,7 @@ function draw() {
 
     pig.render();
     counter.render(counterValue);
+    pigFaceMessage.render(counterValue);
 
     pig.move();
 
