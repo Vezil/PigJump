@@ -33,6 +33,8 @@ function setup() {
 }
 
 function setSketch() {
+    tint(255, 255);
+
     clearEventListeners();
 
     obstacles.splice(0, obstacles.length);
@@ -75,17 +77,13 @@ function draw() {
 
     background(backgroundImage);
 
-    pig.render();
-
-    pig.move();
-
     obstacles.forEach((obstacle, index) => {
-        obstacle.render();
-        obstacle.move();
-
         if (pig.hits(obstacle)) {
             gameOver();
         }
+
+        obstacle.render();
+        obstacle.move();
 
         const isObstaclePassed = passedObstacles.includes(obstacles[index]);
 
@@ -94,6 +92,9 @@ function draw() {
             counterValue++;
         }
     });
+
+    pig.render(isGameOver);
+    pig.move();
 
     counter.render(counterValue);
     pigFaceMessage.render(counterValue, isGameOver);

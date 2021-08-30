@@ -30,6 +30,10 @@ class Pig {
             obstacle.r
         );
 
+        if (collided) {
+            ///
+        }
+
         return collided;
     }
 
@@ -39,7 +43,11 @@ class Pig {
         this.y = constrain(this.y, 0, height - this.ry);
     }
 
-    render() {
+    render(isGameOver) {
+        if (isGameOver) {
+            tint(70, 40, 50);
+        }
+
         image(pigImage, this.x, this.y, this.rx, this.ry);
     }
 }
