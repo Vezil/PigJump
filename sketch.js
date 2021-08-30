@@ -14,6 +14,7 @@ let counterValue = 0;
 let lastObstacleTime = Date.now();
 let winkInterval = null;
 let resetSketchListener = null;
+let isGameOver = false;
 
 function preload() {
     pigImage = loadImage('./assets/PigCharacter.png');
@@ -42,6 +43,7 @@ function setSketch() {
     counterValue = 0;
     lastObstacleTime = Date.now();
     winkInterval = null;
+    isGameOver = false;
 
     pig = new Pig();
     counter = new Counter();
@@ -74,8 +76,6 @@ function draw() {
     background(backgroundImage);
 
     pig.render();
-    counter.render(counterValue);
-    pigFaceMessage.render(counterValue);
 
     pig.move();
 
@@ -84,7 +84,7 @@ function draw() {
         obstacle.move();
 
         if (pig.hits(obstacle)) {
-            noLoop();
+            gameOver();
         }
 
         const isObstaclePassed = passedObstacles.includes(obstacles[index]);
@@ -94,6 +94,9 @@ function draw() {
             counterValue++;
         }
     });
+
+    counter.render(counterValue);
+    pigFaceMessage.render(counterValue, isGameOver);
 }
 
 function wink() {
@@ -106,6 +109,12 @@ function wink() {
     setTimeout(() => {
         pigWithClosedEyes.classList.remove('show');
     }, 700);
+}
+
+function gameOver() {
+    isGameOver = true;
+
+    noLoop();
 }
 
 function addEventListeners() {
