@@ -98,6 +98,14 @@ function draw() {
 
     counter.render(counterValue);
     pigFaceMessage.render(counterValue, isGameOver);
+
+    if (obstacles.length > 5) {
+        obstacles.splice(1);
+    }
+
+    if (passedObstacles.length > 5) {
+        passedObstacles.splice(1);
+    }
 }
 
 function wink() {

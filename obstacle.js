@@ -10,6 +10,8 @@ class Obstacle {
 
     move() {
         this.x -= 9;
+
+        //last level -= 50 ?
     }
 
     render() {
