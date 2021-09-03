@@ -2,7 +2,8 @@ class PigFaceMessage {
     constructor() {
         this.divClass = 'speech-bubble';
 
-        this.greetingText = 'Good luck!';
+        this.greetingText =
+            'Welcome to the Whole Cake Island Level! Good luck!';
         this.tenPointsText = 'Wow!';
         this.twentyPointsText = 'Incredible!';
         this.thirtyPointsText = 'You are insane!';
