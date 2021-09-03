@@ -15,11 +15,15 @@ let lastObstacleTime = Date.now();
 let winkInterval = null;
 let resetSketchListener = null;
 let isGameOver = false;
+let pointSound = null;
+let hitSound = null;
 
 function preload() {
-    pigImage = loadImage('./assets/PigCharacter.png');
-    obstacleImage = loadImage('./assets/Obstacle.png');
-    backgroundImage = loadImage('./assets/WholeCakeIsland.png');
+    pigImage = loadImage('./assets/images/PigCharacter.png');
+    obstacleImage = loadImage('./assets/images/Obstacle.png');
+    backgroundImage = loadImage('./assets/images/WholeCakeIsland.png');
+    pointSound = loadSound('./assets/sounds/point-sound.wav');
+    hitSound = loadSound('./assets/sounds/hit-sound.wav');
 }
 
 function setup() {
@@ -90,6 +94,8 @@ function draw() {
         if (obstacles[index].x < pig.x && !isObstaclePassed) {
             passedObstacles.push(obstacles[index]);
             counterValue++;
+
+            pointSound.play();
         }
     });
 
@@ -100,11 +106,11 @@ function draw() {
     pigFaceMessage.render(counterValue, isGameOver);
 
     if (obstacles.length > 5) {
-        obstacles.splice(1);
+        obstacles.splice(0, 1);
     }
 
     if (passedObstacles.length > 5) {
-        passedObstacles.splice(1);
+        passedObstacles.splice(0, 1);
     }
 }
 
@@ -122,6 +128,8 @@ function wink() {
 
 function gameOver() {
     isGameOver = true;
+
+    hitSound.play();
 
     noLoop();
 }

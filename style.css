@@ -23,7 +23,7 @@ canvas {
 
     z-index: 99;
 
-    background-image: url('assets/PigJumpBorder.png');
+    background-image: url('assets/images/PigJumpBorder.png');
 }
 
 .pig-with-closed-eyes {
@@ -37,7 +37,7 @@ canvas {
     opacity: 0;
     transition: opacity 0.22s;
 
-    background-image: url('assets/pigWithClosedEyes.png');
+    background-image: url('assets/images/pigWithClosedEyes.png');
 }
 
 .pig-with-closed-eyes.show {
