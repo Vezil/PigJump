@@ -23,7 +23,7 @@ canvas {
 
     z-index: 99;
 
-    background-image: url('assets/PigJumpBorder.png');
+    background-image: url('assets/images/PigJumpBorder.png');
 }
 
 .pig-with-closed-eyes {
@@ -37,9 +37,68 @@ canvas {
     opacity: 0;
     transition: opacity 0.22s;
 
-    background-image: url('assets/pigWithClosedEyes.png');
+    background-image: url('assets/images/pigWithClosedEyes.png');
 }
 
 .pig-with-closed-eyes.show {
     opacity: 1;
+}
+
+/* TODO add separate css files */
+
+.speech-bubble {
+    position: relative;
+    max-width: 30em;
+
+    background-color: rgb(253, 190, 190);
+    padding: 1.2em 1.5em;
+    font-size: 1.25em;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.3),
+        0 0.06rem 0.2rem rgba(0, 0, 0, 0.2);
+
+    opacity: 0.8;
+    transition: opacity 0.5s;
+
+    animation: shake 2s infinite cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    animation-play-state: paused;
+
+    transform: translate3d(0, 0, 0);
+}
+
+.speech-bubble:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 100%;
+    left: 1em;
+    border: 0.75rem solid transparent;
+    border-top: none;
+
+    border-bottom-color: rgb(253, 190, 190);
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+        font-size: 30px;
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
 }

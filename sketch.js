@@ -6,6 +6,7 @@ const passedObstacles = [];
 
 let pig = null;
 let pigImage = null;
+let pigFaceMessage = null;
 let obstacleImage = null;
 let backgroundImage = null;
 let counter = null;
@@ -13,11 +14,16 @@ let counterValue = 0;
 let lastObstacleTime = Date.now();
 let winkInterval = null;
 let resetSketchListener = null;
+let isGameOver = false;
+let pointSound = null;
+let hitSound = null;
 
 function preload() {
-    pigImage = loadImage('./assets/PigCharacter.png');
-    obstacleImage = loadImage('./assets/Obstacle.png');
-    backgroundImage = loadImage('./assets/WholeCakeIsland.png');
+    pigImage = loadImage('./assets/images/PigCharacter.png');
+    obstacleImage = loadImage('./assets/images/Obstacle.png');
+    backgroundImage = loadImage('./assets/images/WholeCakeIsland.png');
+    pointSound = loadSound('./assets/sounds/point-sound.wav');
+    hitSound = loadSound('./assets/sounds/hit-sound.wav');
 }
 
 function setup() {
@@ -31,6 +37,8 @@ function setup() {
 }
 
 function setSketch() {
+    tint(255, 255);
+
     clearEventListeners();
 
     obstacles.splice(0, obstacles.length);
@@ -41,9 +49,11 @@ function setSketch() {
     counterValue = 0;
     lastObstacleTime = Date.now();
     winkInterval = null;
+    isGameOver = false;
 
     pig = new Pig();
     counter = new Counter();
+    pigFaceMessage = new PigFaceMessage();
 
     loop();
 
@@ -71,26 +81,37 @@ function draw() {
 
     background(backgroundImage);
 
-    pig.render();
-    counter.render(counterValue);
-
-    pig.move();
-
     obstacles.forEach((obstacle, index) => {
+        if (pig.hits(obstacle)) {
+            gameOver();
+        }
+
         obstacle.render();
         obstacle.move();
-
-        if (pig.hits(obstacle)) {
-            noLoop();
-        }
 
         const isObstaclePassed = passedObstacles.includes(obstacles[index]);
 
         if (obstacles[index].x < pig.x && !isObstaclePassed) {
             passedObstacles.push(obstacles[index]);
             counterValue++;
+
+            pointSound.play();
         }
     });
+
+    pig.render(isGameOver);
+    pig.move();
+
+    counter.render(counterValue);
+    pigFaceMessage.render(counterValue, isGameOver);
+
+    if (obstacles.length > 5) {
+        obstacles.splice(0, 1);
+    }
+
+    if (passedObstacles.length > 5) {
+        passedObstacles.splice(0, 1);
+    }
 }
 
 function wink() {
@@ -103,6 +124,14 @@ function wink() {
     setTimeout(() => {
         pigWithClosedEyes.classList.remove('show');
     }, 700);
+}
+
+function gameOver() {
+    isGameOver = true;
+
+    hitSound.play();
+
+    noLoop();
 }
 
 function addEventListeners() {
