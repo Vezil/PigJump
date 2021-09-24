@@ -10,7 +10,7 @@ class ResetButton {
         const width = '200px';
         const padding = '1em 2em';
         const letterSpacing = '5px';
-        const fontSize = '1.5rem';
+        const fontSize = '1.1rem';
         const cursor = 'pointer';
 
         resetButton.style('background-color', bgColor);
@@ -25,8 +25,7 @@ class ResetButton {
 
         resetButton.position(1200, 870);
 
-        // resetButton.class = 'resetButton';
-        // hover itd... :)
+        resetButton.addClass('reset-button');
 
         return resetButton;
     }
