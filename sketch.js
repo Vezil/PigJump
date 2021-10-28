@@ -19,6 +19,7 @@ let resetSketchListener = null;
 let isGameOver = false;
 let pointSound = null;
 let hitSound = null;
+let eatSound = null;
 
 function preload() {
     pigImage = loadImage('./assets/images/PigCharacter.png');
@@ -29,6 +30,7 @@ function preload() {
     );
     pointSound = loadSound('./assets/sounds/point-sound.wav');
     hitSound = loadSound('./assets/sounds/hit-sound.wav');
+    eatSound = loadSound('./assets/sounds/eat-sound.wav');
 }
 
 function setup() {
@@ -90,7 +92,7 @@ function draw() {
         const secondRandomInt = Math.floor(Math.random() * 255) + 1;
         const thirdRandomInt = Math.floor(Math.random() * 255) + 1;
 
-        const randomHeight = Math.floor(Math.random() * 350) + 1;
+        const randomHeight = Math.floor(Math.random() * 450) + 100;
 
         collectableItems.push(
             new CollectableItem(
@@ -106,7 +108,7 @@ function draw() {
 
     obstacles.forEach((obstacle, index) => {
         if (pig.hits(obstacle)) {
-            // gameOver();
+            gameOver();
         }
 
         obstacle.render();
@@ -118,10 +120,10 @@ function draw() {
             passedObstacles.push(obstacles[index]);
             counterValue++;
 
-            // pointSound.play();
+            pointSound.play();
         }
 
-        if (obstacles[index].x < -20) {
+        if (obstacles[index].x < -25) {
             obstacles.splice(0, 1);
         }
     });
@@ -130,7 +132,14 @@ function draw() {
         collectableItem.render();
         collectableItem.move();
 
-        if (collectableItems[index].x < -20) {
+        if (pig.hits(collectableItem)) {
+            collectableItems.splice(index, 1);
+
+            counterValue++;
+            eatSound.play();
+        }
+
+        if (collectableItems[index] && collectableItems[index].x < -25) {
             collectableItems.splice(0, 1);
         }
     });
