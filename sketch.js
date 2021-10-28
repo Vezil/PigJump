@@ -92,7 +92,7 @@ function draw() {
         const secondRandomInt = Math.floor(Math.random() * 255) + 1;
         const thirdRandomInt = Math.floor(Math.random() * 255) + 1;
 
-        const randomHeight = Math.floor(Math.random() * 450) + 100;
+        const randomHeight = Math.floor(Math.random() * 310) + 100;
 
         collectableItems.push(
             new CollectableItem(
