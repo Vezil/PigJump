@@ -9,7 +9,7 @@ class Counter {
 
         stroke(24);
         strokeWeight(0.5);
-        text('YOUR POINTS: ', STAGE_WIDTH - 80, 30);
+        text('YOUR POINTS: ', STAGE_WIDTH - 120, 30);
 
         stroke(0, 238, 144);
         strokeWeight(1);
