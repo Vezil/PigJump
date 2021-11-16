@@ -2,7 +2,6 @@
 
 .side-menu-container {
     color: white;
-    text-align: right;
     width: 20%;
     position: absolute;
     right: 0px;
@@ -11,7 +10,7 @@
 }
 
 .side-menu-container > .levels-header {
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding: 1rem;
     font-size: 4rem;
     color: thistle;

@@ -147,7 +147,7 @@ function draw() {
     pig.render(isGameOver);
     pig.move();
 
-    counter.render(counterValue);
+    counter.render(counterValue < 10 ? '0' + counterValue : counterValue);
     pigFaceMessage.render(counterValue, isGameOver);
 
     if (passedObstacles.length > 2) {

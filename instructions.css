@@ -1,0 +1,10 @@
+.instructions {
+    color: white;
+    text-align: right;
+    width: 20%;
+    position: absolute;
+    left: 200px;
+    bottom: 10px;
+    text-align: center;
+    opacity: 0.3;
+}
